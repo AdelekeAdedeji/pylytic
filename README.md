@@ -6,6 +6,10 @@ of complex arithemetic expressions. It leverages mathematical algorithms such as
 methods to perform computations. This library is ideal for developers, researchers, and enthusiasts seeking optimized 
 solutions for mathematical operations.
 
+[![PyPI version](https://badge.fury.io/py/pylytic.svg)](https://pypi.org/project/pylytic/)
+[![Downloads](https://pepy.tech/badge/pylytic)](https://pepy.tech/project/pylytic)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 ### Library Structure
 - pylytic
 
@@ -31,6 +35,11 @@ solutions for mathematical operations.
 To install `pylytic`, simply use pip:
 ```bash
 pip install pylytic
+```
+
+Or install directly from this repository
+```bash
+pip install git+https://github.com/AdelekeAdedeji/pylytic.git
 ```
 
 ## eval.py
