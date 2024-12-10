@@ -145,4 +145,3 @@ Contact details: [aadeleke91618330@gmail.com](mailto:aadeleke91618330@gmail.com)
 
 ## Acknowledgments
 Special thanks to the mathematicians and computer scientists whose work inspired the algorithms used in this library.
-
