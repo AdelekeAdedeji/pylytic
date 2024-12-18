@@ -84,7 +84,7 @@ class Lexer:
 
     def create_number(self):
         """
-        Constructs numeric tokens with its token ty pe and value
+        Constructs numeric tokens with its token type and value
         :return: Number token
         """
         number_str = ""
@@ -532,7 +532,7 @@ class Interpreter:
 def eval_complex(expr: str, mode: str = "deg",
                  logarithmic_base: int | float = 10) -> int | float:
     """
-    Evaluates mathematicaljjj expressions, has optional angle mode and logarithmic base
+    Evaluates mathematical expressions, has optional angle mode and logarithmic base
     :param expr: str -> Required, mathematical expression to evaluate
     :param mode: str ->  Required for expressions containing trig functions,
                 options include deg, rad or grad, defaults to deg
