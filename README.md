@@ -60,7 +60,7 @@ print(expr_result)
 ```
 `expr:` represents the expression to be evaluated, expression is strictly of type str
 
-`mode:` represents the mode in which the expression to be evaluated, defaults to deg (as in degrees), also supports 
+`mode:` represents the mode in which the expression is to be evaluated, defaults to deg (as in degrees), also supports 
 rad (radians) and grad (gradians)
 
 `logarithmic_base:` the base in which the expression is to be evaluated, defaults to base 10
