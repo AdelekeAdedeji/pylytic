@@ -209,6 +209,9 @@ class Parser:
         self.current_token = self.advance()
         self.expected_types = "!", "+", "-", "*", "/", "^", ")", EvalConstants.SPACES.value
 
+    def __repr__(self):
+        return f"{self.__class__.__qualname__}({self.lexer_tokens})"
+
     def error(self):
         """
         :return: None
@@ -413,6 +416,9 @@ class Interpreter:
         self.parser = parser
         self.mode = mode
         self.base = base
+
+    def __repr__(self):
+        return f"{self.__class__.__qualname__}(parser={self.parser})"
 
     def visit(self, node: BinOpNode | FunctionNode | UnaryOpNode | ConstantNode | NumberNode):
         """
