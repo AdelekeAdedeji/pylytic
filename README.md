@@ -128,9 +128,11 @@ An inverse version of the CORDIC algorithm used for calculating inverse trigonom
 
 ### Newton-Raphson Method
 A root-finding algorithm used here for high-precision computation of square roots and more. The method iteratively refines an 
-initial guess to converge on an accurate result.
+initial guess to converge on an accurate result. 
 
----
+For more information about Pylytic, check out: [Pylytic on Medium](https://medium.com/@aadeleke91618330/introducing-pylytic-a-fast-and-secure-python-library-for-evaluating-complex-mathematical-9c9f1b9d019b)
+
+___
 ## License
 [MIT License](https://opensource.org/licenses/MIT)
 
