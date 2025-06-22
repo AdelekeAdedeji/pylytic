@@ -54,17 +54,49 @@ Here is a quick example to get started:
 ```python
 from pylytic import eval
 
-expr_result = eval.eval_complex(expr="1.725 * cosech(log(0.784 + atan(0.459)) + 4P(2)C(7) / 3!) + cot(40) * asec(9.5 * 7 - 5) - -(sinh(1.5) + 2 ^ ln(0.75))",
-                         mode="deg", logarithmic_base=10)
-print(expr_result)
-```
+expression = "1.725 * cosech(log(0.784 + atan(0.459)) + 4P(2)C(7) / 3!) + cot(40) * asec(9.5 * 7 - 5) - -(sinh(1.5) + 2 ^ ln(0.75))" 
+expr_result = eval.eval_complex(expr=expression, mode="deg", logarithmic_base=10)
+
+print(expr_result) # output: 109.09598730958392
+``` 
+
 `expr:` represents the expression to be evaluated, expression is strictly of type str
 
 `mode:` represents the mode in which the expression is to be evaluated, defaults to deg (as in degrees), also supports 
 rad (radians) and grad (gradians)
 
-`logarithmic_base:` the base in which the expression is to be evaluated, defaults to base 10
+`logarithmic_base:` the base in which the expression is to be evaluated, defaults to base 10, strictly of type int, float
+or tuple, why `logarithmic_base` supports tuple is that we can evaluate an expression that contains multiple logarithmic expressions
+with different bases, we pass the different bases into the tuple, then each of those bases are mapped internally to each 
+logarithmic expression, for instance
 
+```python
+from pylytic import eval
+
+expression = "1.725 * log(85.5) + atan(0.459) + log(77.77) / 3! + cot(40) * log(17.95 * 7 / 5) - -(sinh(1.5) + 2 ^ log(0.85))" 
+expr_result = eval.eval_complex(expr=expression, mode="rad", logarithmic_base=(2, 5, 8, 10))
+
+print(expr_result) # output: 13.645721297188667
+```
+
+From this `2` is mapped internally to `log(85.5)` yielding `log2(85.5)`, this means `logarithm of 85.5 base 2`, `5` is mapped internally
+to `log(77.77)` yielding `log5(77.77)`, this means `logarithm of 77.77 base 5`, the same goes for 8 and 10.
+
+If the number of logarithmic expressions to be mapped does not equal the bases, the last base entered will be used to evaluate the 
+remaining logarithmic expressions, for instance
+
+```python
+from pylytic import eval
+
+expression = "1.725 * log(85.5) - log(4.5) + atan(0.459) + log(77.77) / 3! + log(40) * log(17.95 * 7 / 5) - -(sinh(1.5) + 2 ^ log(0.85)) + log(95.67)"
+expr_result = eval.eval_complex(expr=expression, mode="grad", logarithmic_base=(7, 3.5, 4.9, 10))
+
+print(expr_result) # output: 37.899559984313775
+```
+
+In this scenario, `7`,`3.5`,`4.9`,`10` maps to `log(85.5)`, `log(4.5)`, `log(77.77)`, `log(40)` respectively but no base is specified for 
+`log(17.95 * 7 / 5)`, `log(0.85)` and `log(95.67)`. As said earlier on, the last base entered (`10` in this case) will be used as base
+for the remaining logarithmic expressions (`log(17.95 * 7 / 5)`, `log(0.85)` and `log(95.67)`).
 
 ## m_eval.py
 `m_eval` is a module in the pylytic library which contains mathematical functions

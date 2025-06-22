@@ -412,10 +412,11 @@ class Interpreter:
     """
     Traverses the AST to evaluate mathematical expressions.
     """
-    def __init__(self, parser: Parser, mode: str, base: int | float):
+    def __init__(self, parser: Parser, mode: str, base: int | float | tuple):
         self.parser = parser
         self.mode = mode
-        self.base = base
+        self.base = base if isinstance(base, int | float) else iter(base)
+        self.l_base = base[-1] if isinstance(base, tuple) else base
 
     def __repr__(self):
         return f"{self.__class__.__qualname__}(parser={self.parser})"
@@ -505,6 +506,11 @@ class Interpreter:
                 if check_mode:
                     return method(self.visit(node.first_argument), self.mode)
                 elif check_base:
+                    if isinstance(self.base, type(iter(()))):
+                        try:
+                            return method(self.visit(node.first_argument), next(self.base))
+                        except StopIteration:
+                            return method(self.visit(node.first_argument), self.l_base)
                     return method(self.visit(node.first_argument), self.base)
                 else:
                     return method(self.visit(node.first_argument))
@@ -536,7 +542,7 @@ class Interpreter:
 
 @validate_type
 def eval_complex(expr: str, mode: str = "deg",
-                 logarithmic_base: int | float = 10) -> int | float:
+                 logarithmic_base: int | float | tuple = 10) -> int | float:
     """
     Evaluates mathematical expressions, has optional angle mode and logarithmic base
     :param expr: str -> Required, mathematical expression to evaluate
