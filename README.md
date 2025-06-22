@@ -70,6 +70,7 @@ or tuple, why `logarithmic_base` supports tuple is that we can evaluate an expre
 with different bases, we pass the different bases into the tuple, then each of those bases are mapped internally to each 
 logarithmic expression, for instance
 
+
 ```python
 from pylytic import eval
 
@@ -79,11 +80,14 @@ expr_result = eval.eval_complex(expr=expression, mode="rad", logarithmic_base=(2
 print(expr_result) # output: 13.645721297188667
 ```
 
+
 From this `2` is mapped internally to `log(85.5)` yielding `log2(85.5)`, this means `logarithm of 85.5 base 2`, `5` is mapped internally
 to `log(77.77)` yielding `log5(77.77)`, this means `logarithm of 77.77 base 5`, the same goes for 8 and 10.
 
+
 If the number of logarithmic expressions to be mapped does not equal the bases, the last base entered will be used to evaluate the 
 remaining logarithmic expressions, for instance
+
 
 ```python
 from pylytic import eval
@@ -94,9 +98,10 @@ expr_result = eval.eval_complex(expr=expression, mode="grad", logarithmic_base=(
 print(expr_result) # output: 37.899559984313775
 ```
 
+
 In this scenario, `7`,`3.5`,`4.9`,`10` maps to `log(85.5)`, `log(4.5)`, `log(77.77)`, `log(40)` respectively but no base is specified for 
 `log(17.95 * 7 / 5)`, `log(0.85)` and `log(95.67)`. As said earlier on, the last base entered (`10` in this case) will be used as base
-for the remaining logarithmic expressions (`log(17.95 * 7 / 5)`, `log(0.85)` and `log(95.67)`).
+for the remaining logarithmic expressions `log(17.95 * 7 / 5)`, `log(0.85)` and `log(95.67)`.
 
 ## m_eval.py
 `m_eval` is a module in the pylytic library which contains mathematical functions
