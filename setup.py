@@ -11,11 +11,14 @@ classifiers = [
     'License :: OSI Approved :: MIT License',
 ]
 
+with open("README.md", "r", encoding="utf-8") as f:
+    long_description = f.read()
+
 setup(
     name="pylytic",
-    version="0.1.0",
+    version="0.2.0",
     description="A lightweight library for evaluating mathematical expressions and functions",
-    long_description=open("README.md", "r", encoding="utf-8").read(),
+    long_description=long_description,
     long_description_content_type="text/markdown",
     author="Adeleke Adedeji",
     author_email="aadeleke91618330@gmail.com",
